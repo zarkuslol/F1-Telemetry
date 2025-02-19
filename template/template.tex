@@ -14,18 +14,18 @@ brazil]{facom-ufu-abntex2}
 \newcommand{\red}[1]{\textcolor{red}{#1}}
 
 
-\autor{Nome Sobrenome} %TCC
-\data{2016}
-\orientador{Professorius Sapientus} %TCC
+\autor{José Lucas Ferreira de Lima} %TCC
+\data{2025}
+\orientador{Ronaldo Castro de Oliveira} %TCC
 %\coorientador{Algum?} %TCC
 
 % ---
 % Informações de dados para CAPA e FOLHA DE ROSTO
 % ---
 
-\titulo{Este é o título do meu Trabalho de Conclusão de Curso} %TCC
+\titulo{De voltas rápidas a decisões rápidas: o papel do big data na Fórmula 1} %TCC
 
-\hypersetup{pdfkeywords={palavra 1}{palavra 2}{palavra 4}{palavra 4}{palavra 5}} %TCC
+\hypersetup{pdfkeywords={Big Data, Fórmula 1, telemetria, análise de dados, Kafka, UDP, Python, dashboard, machine learning, simulação, mensageria}}
 
 \begin{document} 
 \frenchspacing 
@@ -86,13 +86,15 @@ brazil]{facom-ufu-abntex2}
 % ---
 % Dedicatória
 % ---
-%\begin{dedicatoria}
-%   \vspace*{\fill}
-%   \centering
-%   \noindent
-%   \textit{Dedico a \lipsum[10]}  %TCC:
-%   \vspace*{\fill}
-%\end{dedicatoria}
+\begin{dedicatoria}
+   \vspace*{\fill}
+   \centering
+   \noindent
+   \textit{Dedico este trabalho aos meus pais, pelo apoio incondicional em toda a minha trajetória; aos meus amigos, 
+   que foram pilares essenciais durante minha jornada acadêmica; e à minha avó, que nos deixou enquanto eu construía este trabalho, 
+   mas cuja memória permanece viva em meu coração.}  %TCC:
+   \vspace*{\fill}
+\end{dedicatoria}
 % ---
 
 % ---
@@ -117,19 +119,31 @@ brazil]{facom-ufu-abntex2}
 
 
 \begin{resumo} %TCC:
- Segundo a \citeonline[3.1-3.2]{NBR6028:2003}, o resumo deve ressaltar o
- objetivo, o método, os resultados e as conclusões do documento. A ordem e a extensão
- destes itens dependem do tipo de resumo (informativo ou indicativo) e do
- tratamento que cada item recebe no documento original. O resumo deve ser
- precedido da referência do documento, com exceção do resumo inserido no
- próprio documento. (\ldots) As palavras-chave devem figurar logo abaixo do
- resumo, antecedidas da expressão Palavras-chave:, separadas entre si por
- ponto e finalizadas também por ponto.
+
+  A Fórmula 1 é um ambiente altamente tecnológico onde a análise de dados em 
+  tempo real desempenha um papel crucial no desempenho das equipes, deixando a competitividade do esporte
+  cada vez mais alta. Este trabalho explora a aplicação de \textbf{Big Data} na Fórmula 1, abordando tanto os conceitos teóricos 
+  quanto uma implementação prática baseada na telemetria do jogo \textbf{F1 22}.
+  
+  O objetivo principal é demonstrar como a coleta e análise de dados podem fornecer insights valiosos para 
+  a tomada de decisões estratégicas durante uma corrida. Para isso, foi desenvolvida uma aplicação em \textbf{Python} 
+  que se conecta ao jogo pela rede local, estabelece um \textbf{socket} com este, recebe os dados de telemetria via \textbf{UDP}, 
+  processa as informações, e envia os dados por mensageria utilizando \textbf{Kafka}. Os resultados são exibidos em um 
+  \textbf{dashboard interativo} conectado a essa fila, permitindo análises em tempo real durante a corrida. 
+  A aplicação foi testada em um ambiente controlado, e os resultados obtidos são discutidos em detalhes.
+  
+  A metodologia adotada inclui o estudo dos princípios do \textbf{Big Data} aplicados à F1, bem como o desenvolvimento 
+  da pipeline de dados para captura e visualização dos dados do jogo. A implementação prática busca simular a experiência 
+  real das equipes de F1 no uso de dados para análise de desempenho, ou seja, a visão do engenheiro de corrida durante a prova.
+
+  Os resultados esperados incluem a demonstração do impacto do Big Data na performance das equipes e a 
+  validação do potencial da tecnologia utilizada para fins de simulação e aprendizado. Este trabalho contribui 
+  para a compreensão do uso da telemetria na F1 e reforça a importância da análise de dados em cenários de alta performance.
 
  \vspace{\onelineskip}
     
  \noindent
- \textbf{Palavras-chave}: Até, cinco, palavras-chave, separadas, por, vírgulas. %TCC:
+ \textbf{Palavras-chave}: big data, formula 1, engenharia de dados, python, pipeline. %TCC:
 \end{resumo}
 
 % ---
@@ -197,16 +211,40 @@ brazil]{facom-ufu-abntex2}
 \chapter[Introdução]{Introdução}
 %TCC:
 Contextualização, problema, hipótese, objetivo geral, objetivos específicos, justificativa e resultados esperados.
+\section{Contextualização e Motivação}
+\section{Problema de Pesquisa}
+\section{Objetivos}
+\subsection{Objetivo Geral}
+\subsection{Objetivos Específicos}
+\section{Justificativa}
+\section{Metodologia do Trabalho}
+\section{Estrutura do Trabalho}
+
+% ---
+% Revisão Bibliográfica
+% ---
 
 \chapter{Revisão Bibliográfica}
 %TCC:
 Um ou mais capítulos (por exemplo, se há duas linhas de trabalhos relacionados).
+\section{Conceitos de Big Data}
+\section{Aplicação de Big Data na Fórmula 1}
+\section{Telemetria e Coleta de Dados em Tempo Real}
+\section{Tecnologias Utilizadas}
+\section{Trabalhos Relacionados}
 
-
+% ---
+% Desenvolvimento
+% ---
 
 \chapter{Desenvolvimento}
 %TCC:
 Um ou mais capítulos (por exemplo um para testes)
+\section{Arquitetura da Solução}
+\section{Coleta de Dados via Telemetria}
+\section{Processamento e Armazenamento de Dados}
+\section{Visualização dos Dados}
+\section{Implementação e Testes}
 
 
 \begin{figure}[!ht]
@@ -215,6 +253,17 @@ Um ou mais capítulos (por exemplo um para testes)
 	\caption[Isso é o que aparece no sumário]{Imagem de exemplo.}
 	\label{fig:graficosVariandoTamanhoRede}
 \end{figure}
+
+% ---
+% Análise dos Resultados
+% ---
+
+\chapter{Análise dos Resultados}
+\section{Validação da Coleta e Processamento}
+\section{Desempenho e Eficiência da Aplicação}
+\section{Limitações e Melhorias Futuras}
+
+
 
 
 %TCC:
@@ -225,9 +274,12 @@ Um ou mais capítulos (por exemplo um para testes)
 % ---
 % Conclusão
 % ---
-\chapter[Conclusão]{Conclusão}
+\chapter{Conclusão e Trabalhos Futuros}
 %TCC:
 E daí?
+\section{Revisão dos Objetivos e Contribuições}
+\section{Desafios Encontrados}
+\section{Aplicações Futuras}
 
 
 

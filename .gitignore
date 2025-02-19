@@ -1,0 +1,16 @@
+# LaTeX
+template/template.aux
+template/template.log
+template/template.out
+template/template.toc
+template/template.lot
+template/template.lof
+template/template.blg
+template/template.bbl
+template/template.synctex.gz
+template/template.brf
+template/template.fdb_latexmk
+template/template.fls
+template/template.idx
+template/template.ilg
+template/template.ind
