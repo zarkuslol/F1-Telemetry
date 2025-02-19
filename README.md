@@ -21,8 +21,8 @@
 
 ### **Escrita**  
 - **Semana 1:**  
-    - [ ] Definir objetivos do TCC e levantamento de referências bibliográficas.  
-    - [ ] Estruturar um esqueleto do trabalho (sumário e tópicos principais).  
+    - [x] Definir objetivos do TCC e levantamento de referências bibliográficas.  
+    - [x] Estruturar um esqueleto do trabalho (sumário e tópicos principais).  
 - **Semana 2:**  
     - [ ] Escrever a introdução e contextualização sobre Big Data na F1.  
     - [ ] Levantar cases reais sobre uso de dados na categoria.  
