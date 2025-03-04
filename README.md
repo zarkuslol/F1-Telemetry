@@ -7,16 +7,16 @@
 
 ### **Prática**  
 - **Semana 1:**  
-    - [ ] Revisar documentação sobre o protocolo de telemetria do F1 22.  
-    - [ ] Fazer testes iniciais de conexão via UDP para verificar recebimento de pacotes.  
+    - [x] Revisar documentação sobre o protocolo de telemetria do F1 22.  
+    - [x] Fazer testes iniciais de conexão via UDP para verificar recebimento de pacotes.  
 - **Semana 2:**  
-    - [ ] Identificar quais dados da telemetria serão coletados e armazenados.  
+    - [x] Identificar quais dados da telemetria serão coletados e armazenados.  
     - [ ] Estruturar um modelo inicial para armazenar os dados coletados (JSON, banco de dados, etc.).  
 - **Semana 3:**  
-    - [ ] Desenvolver um script básico para coletar pacotes UDP e salvar os dados.  
-    - [ ] Validar a integridade dos dados recebidos e ajustar caso necessário.  
+    - [x] Desenvolver um script básico para coletar pacotes UDP e salvar os dados.  
+    - [x] Validar a integridade dos dados recebidos e ajustar caso necessário.  
 - **Semana 4:**  
-    - [ ] Planejar a arquitetura da aplicação (pipeline de dados e dashboard).  
+    - [x] Planejar a arquitetura da aplicação (pipeline de dados e dashboard).  
     - [ ] Revisar tecnologias e bibliotecas para visualização de dados.  
 
 ### **Escrita**  
@@ -27,7 +27,7 @@
     - [ ] Escrever a introdução e contextualização sobre Big Data na F1.  
     - [ ] Levantar cases reais sobre uso de dados na categoria.  
 - **Semana 3:**  
-    - [ ] Redigir seção sobre fundamentos de Big Data e seu impacto na F1.  
+    - [x] Redigir seção sobre fundamentos de Big Data e seu impacto na F1.  
     - [ ] Estudo sobre protocolos de transmissão de dados em tempo real.  
 - **Semana 4:**  
     - [ ] Explicar a metodologia usada no desenvolvimento da aplicação.  
