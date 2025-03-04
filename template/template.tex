@@ -226,10 +226,58 @@ Contextualização, problema, hipótese, objetivo geral, objetivos específicos,
 
 \chapter{Revisão Bibliográfica}
 %TCC:
-Um ou mais capítulos (por exemplo, se há duas linhas de trabalhos relacionados).
 \section{Conceitos de Big Data}
+Big Data nada mais é do que a capacidade de coletar, processar e analisar grandes volumes de dados em alta velocidade,
+variabilidade e veracidade. A definição dos 5 Vs é comumente utilizada para descrever as características do Big Data:
+
+\begin{itemize}
+    \item \textbf{Volume}: refere-se à quantidade de dados gerados a cada segundo, minuto ou hora. 
+    \item \textbf{Velocidade}: refere-se à rapidez com que os dados são gerados e processados.
+    \item \textbf{Variedade}: refere-se à diversidade de fontes e formatos dos dados.
+    \item \textbf{Veracidade}: refere-se à confiabilidade e precisão dos dados.
+    \item \textbf{Valor}: refere-se à capacidade de extrair informações úteis e insights dos dados.
+\end{itemize}
+
+Através do big data, é possível analisar padrões, tendências e correlações em tempo real, permitindo a tomada de decisões mais assertivas
+e eficientes. É justamente com ela que as equipes de Fórmula 1 conseguem monitorar o desempenho dos carros em tempo real
+
+Entretanto, exige um poder computacional significativo e ferramentas especializadas para processamento e análise dos dados,
+bem como profissionais capacitados para interpretar os resultados e extrair valor das informações coletadas. Atualmente,
+já existem diversas tecnologias e frameworks disponíveis para lidar com o Big Data, como o Apache Hadoop, Spark, Kafka, entre outros.
+Algumas delas serão bem úteis e utilizadas ao longo deste trabalho.
+
 \section{Aplicação de Big Data na Fórmula 1}
+Atualmente, nos carros de Fórmula 1, contamos com 300 sensores espalhados pelo carro, que geram dados de temperatura do motor, pressão 
+dos pneus, velocidade, aceleração, entre outros. Esses dados são coletados em tempo real e enviados para a equipe de engenheiros dentro do paddock,
+que podem desempenhar diversas atividades com eles, desde a análise de desempenho do carro e tomada de decisões estratégicas durante a 
+corrida, até a simulação de cenários e previsão de resultados.
+
+Por exemplo, durante uma corrida, os engenheiros podem monitorar a temperatura dos pneus e ajustar a pressão de acordo com as 
+condições da pista, ou analisar o desgaste dos freios e sugerir ao piloto uma redução no uso do freio motor. Além disso, é possível
+usar esses dados já tratados pela nossa pipeline para passá-los para um modelo de machine learning, que pode prever o desempenho do carro,
+se uma ultrapassagem é viável, ou até mesmo simular cenários diversos de corrida.
+
+Alguns modelos já são fornecidos por empresas patrocinadoras, como a AWS, que oferece um modelo de machine learning para prever o 
+desempenho do carro, além do algoritmo de ultrapassagem, e a Oracle, atual patrocinadora da Red Bull, que oferece um modelo de simulação
+de corrida. Entretanto, esses modelos são genéricos e não levam em consideração as particularidades de cada carro e piloto, o que pode
+comprometer a precisão das previsões.
+
+E é justamente por isso que não coletamos apenas dados do carro, mas também do piloto, como o nível de concentração, batimentos cardíacos,
+e até mesmo a pressão sanguínea. Esses dados são fundamentais para entender o comportamento do piloto durante a corrida e ajustar o carro
+de acordo com suas necessidades, garantindo o melhor desempenho possível.
+
+Além disso, não só as equipes podem tirar proveito do big data, como também a própria FIA, que pode, por exemplo, usar dados dos eventos
+para melhorar a segurança dos pilotos, ou até mesmo prever acidentes antes que eles aconteçam. Outra empresa que se beneficia bastante desses
+dados gerados é a Liberty Media, que detém os direitos comerciais da Fórmula 1 e pode usá-los para melhorar a experiência do espectador,
+oferecendo insights e estatísticas em tempo real durante as corridas, entender o que pode ser melhorado nos próximos GPs para quem assiste
+no autódromo. Não se pode esquecer também dos patrocinadores, que podem usar esses dados para entender melhor o retorno sobre o investimento
+e ajustar suas estratégias de marketing.
+
 \section{Telemetria e Coleta de Dados em Tempo Real}
+O grande desafio de todas as equipes até aqui: como coletar gigabytes de dados de diversos formatos em uma rede privada, compartilhada apenas
+entre as equipes, de forma segura, eficiente e no menor espaço de tempo possível, e mais, sem deixar esse dado ser corrompido ou perdido? 
+A resposta para isso é a telemetria, que é a tecnologia que permite a coleta, transmissão e análise de dados em tempo real.
+
 \section{Tecnologias Utilizadas}
 \section{Trabalhos Relacionados}
 
