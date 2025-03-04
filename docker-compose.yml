@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  f1-telemetry:
+    build: .
+    container_name: f1-telemetry
+    depends_on:
+      - kafka
+    networks:
+      - telemetry_network
+    ports:
+      - "20777:20777/udp" # Porta UDP para receber os dados do jogo
+    environment:
+      KAFKA_BROKER: "kafka:9092"
+    restart: unless-stopped
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    container_name: zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+    networks:
+      - telemetry_network
+    restart: unless-stopped
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    container_name: kafka
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
+      KAFKA_ADVERTISED_LISTENERS: "PLAINTEXT://kafka:9092"
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: "PLAINTEXT:PLAINTEXT"
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    networks:
+      - telemetry_network
+    restart: unless-stopped
+
+networks:
+  telemetry_network:
+    driver: bridge

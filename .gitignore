@@ -14,3 +14,12 @@ template/template.fls
 template/template.idx
 template/template.ilg
 template/template.ind
+
+# Environment
+.env
+
+venv
+.venv
+
+# __pycache__
+src/telemetry/__pycache__
