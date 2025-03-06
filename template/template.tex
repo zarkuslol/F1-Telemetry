@@ -123,7 +123,7 @@ brazil]{facom-ufu-abntex2}
   A Fórmula 1 é um ambiente altamente tecnológico onde a análise de dados em 
   tempo real desempenha um papel crucial no desempenho das equipes, deixando a competitividade do esporte
   cada vez mais alta. Este trabalho explora a aplicação de \textbf{Big Data} na Fórmula 1, abordando tanto os conceitos teóricos 
-  quanto uma implementação prática baseada na telemetria do jogo \textbf{F1 22}.
+  quanto uma implementação prática baseada na telemetria do jogo \textbf{F1 23}.
   
   O objetivo principal é demonstrar como a coleta e análise de dados podem fornecer insights valiosos para 
   a tomada de decisões estratégicas durante uma corrida. Para isso, foi desenvolvida uma aplicação em \textbf{Python} 
@@ -169,9 +169,8 @@ brazil]{facom-ufu-abntex2}
 % ---
 \begin{siglas} %TCC:
   \item[Fig.] Area of the $i^{th}$ component
-  \item[456] Isto é um número
-  \item[123] Isto é outro número
-  \item[Zézão] este é o meu nome
+  \item[UDP] User Datagram Protocol
+  \item[CFD] Computational Fluid Dynamics
 \end{siglas}
 % ---
 
@@ -212,13 +211,106 @@ brazil]{facom-ufu-abntex2}
 %TCC:
 Contextualização, problema, hipótese, objetivo geral, objetivos específicos, justificativa e resultados esperados.
 \section{Contextualização e Motivação}
+
+No passado, a Fórmula 1 era um esporte baseado na intuição e na experiência dos engenheiros e pilotos, que precisavam tomar decisões rápidas e precisas com base em seu conhecimento e feeling. Um dos maiores exemplos
+disso é a história de Ayrton Senna, que, durante o GP de Mônaco de 1984, decidiu trocar os pneus de chuva por pneus de pista seca, mesmo com a pista molhada, e venceu a corrida. Essa decisão foi baseada em sua intuição,
+considerada uma das melhores da história da F1.
+
+Por um lado, isso mostrava bastante sobre o real talento dos pilotos e equipes, que nunca queriam ficar para trás na competição. Por outro, era um ambiente altamente competitivo e arriscado, onde qualquer erro poderia custar
+a vitória na corrida, o título mundial ou até mesmo a vida de um piloto. Com o passar dos anos, a tecnologia foi se tornando cada vez mais presente na vida das pessoas, seja através dos computadores, celulares, tablets, e na F1 não foi diferente.
+
+Desde 1980, começamos a ver os primeiros sistemas elétricos nos carros, sensores onboard eram instalados para medir a performance do motor, fluxo de combustível, temperatura dos pneus, entre outros.
+As equipes implantavam seus primeiros computadores dentro do paddock para munir engenheiros e pilotos com informações em tempo real, permitindo a extração de insights e melhores tomadas de decisão, focando naquilo que realmente importa.
+
+No meio dos anos 80, a telemetria nascia dentro do contexto da F1, as equipes faziam seus primeiros testes com dados em tempo real.
+Mesmo com a pouca tecnologia existente na época, as equipes conseguiam coletar e monitorar os dados para melhorar seu desempenho em pista,
+essas ações fizeram com que a cultura de dados engatinhasse para o que temos hoje.
+
+Ao chegar dos anos 90, tivemos os primeiros passos do Analytics na F1, computadores também eram usados para analisar a enorme quantidade de dados que chegavam sem parar,
+tanto das sessões de treino, qualificação e corrida, quanto dos testes de pré-temporada. Com o avanço da tecnologia, agora os times também poderiam fazer simulações com equipamentos
+Além disso, esses dados eram usados para simular a performance aerodinâmica do carro usando tecnologias de CFD, o que permitia aos engenheiros fazer ajustes na eficiência 
+e testes de túnel de vento do carro antes mesmo de chegar à pista.
+
+De 2000 para frente, já era possível construir simuladores realistas de corrida, com uma física complexa, para treinar os pilotos, permitindo que eles se perfeiçoassem em pistas que nunca haviam corrido antes ou trechos específicos em que o desempenho não era tão bom.
+
+Daqui para frente, a tecnologia só evoluiu, até chegar ao ponto que produzimos terabytes de dados em um único fim de semana de corrida, permitindo a ascensão da cultura data-driven na F1, onde as decisões são tomadas com base em dados e não mais na intuição.
+Com isso, podemos treinar modelos de IA para servirem como copilotos virtuais, que podem prever o desempenho do carro, simular ultrapassagens, ou até mesmo prever acidentes antes que eles aconteçam.
+
+Além disso, agora, esses mesmos dados podem sair de dentro das pistas e transportados para os engenheiros presentes nas sedes das equipes, permitindo com que especialistas espalhados no mundo inteiro consigam
+apoiar os engenheiros que trabalham diretamente do paddock.
+
+E é justamente por isso que este trabalho se propõe a explorar o papel do Big Data na Fórmula 1, para entendermos como todo esse processo de coleta, tratamento e armazenamento dos dados
+acontece na prática e como podemos garantir que esses dados sejam transportados de ponta a ponta em pouquíssimos milissegundos, sem perda de informações e com a máxima segurança possível.
+
 \section{Problema de Pesquisa}
+
+Como pudemos ver, na F1, a quantidade de dados gerados a cada segundo é gigantesca, 300 sensores produzem dados sem parar a todo vapor, e a capacidade de coletar, processar e analisar esses dados em tempo real é crucial para a melhoria de desempenho das equipes, o que nos leva
+a pensar: como podemos extrair terabytes de dados de dentro desses sensores, transportá-los pela rede de um ponto A para um ponto B, garantindo que não teremos perdas de pacote, corrupção de dados ou até mesmo vazamento de informações,
+tratá-los de valores binários para inteiros e decimais legíveis por humanos e exibí-los em uma tela para que os engenheiros possam identificar oportunidade de melhoria - tudo isso, no menor espaço de tempo possível?
+
+Essa é a pergunta que este trabalho se propõe a responder, mostrando como tecnologias modernas do mercado, sejam elas open-source ou não, podem ser utilizadas para resolver esse problema de forma eficiente e segura, garantindo que as equipes possam tomar decisões mais assertivas e eficientes.
+Além disso, como podemos construir uma pipeline robusta, tolerante a falhas e escalável, que possa lidar com a quantidade de dados gerados e garantir que eles cheguem ao destino final sem perda de informações.
+
 \section{Objetivos}
 \subsection{Objetivo Geral}
+
+O objetivo geral deste trabalho é fazer com que o leitor entenda como o Big Data é aplicado na Fórmula 1, através de um modelo prático e funcional, que também pode ser aplicado em outros cenários de alta performance,
+e como isso ajudou a aumentar cada vez mais a competitividade entre as equipes.
+
 \subsection{Objetivos Específicos}
+
+Alguns objetivos específicos deste trabalho incluem:
+
+\begin{itemize}
+    \item Estudar os conceitos de Big Data e sua aplicação na Fórmula 1;
+    \item Desenvolver uma aplicação em Python que se conecta ao jogo, recebe os dados de telemetria, processa esses dados e envia para a mensageria;
+    \item Implementar um dashboard interativo que exibe os dados tratados em tempo real;
+    \item Testar a aplicação em um ambiente controlado e analisar os resultados obtidos;
+    \item Mostrar como os engenheiros tomam decisões estratégicas durante uma corrida com base nos dados coletados.
+    \item Propor melhorias e aplicações futuras para a aplicação desenvolvida.
+\end{itemize}
+
 \section{Justificativa}
+
+Atualmente, a Fórmula 1 se destaca como um ambiente avançado para pesquisas em Big Data, engenharia e ciência de dados, 
+devido à enorme quantidade de informações geradas a cada segundo. A capacidade de coletar, processar e analisar esses dados em tempo real é um 
+fator crítico para a otimização do desempenho das equipes, tornando a tecnologia de dados um diferencial competitivo na categoria.
+
+Além do volume massivo de dados, a complexidade e diversidade das informações coletadas representam desafios significativos. 
+Sensores embarcados em carros de F1 capturam uma variedade de dados—desde variáveis mecânicas e aerodinâmicas até padrões de pilotagem 
+e condições ambientais—exigindo pipelines de processamento altamente eficientes para transformar esses dados brutos em insights estratégicos acionáveis.
+
+Desafios fundamentais do Big Data, como processamento em streaming, armazenamento distribuído e requisitos de baixa latência, estão fortemente presentes na competição. 
+Cabe aos engenheiros de dados das equipes desenvolver soluções robustas que garantam a confiabilidade e a velocidade necessárias para tomadas de decisão em frações de segundo.
+
+Além do contexto esportivo, os avanços tecnológicos aplicados na Fórmula 1 têm impacto em diversos setores que lidam com análise de dados em tempo real, 
+como a indústria automobilística, aeroespacial e financeira. Dessa forma, estudar os processos de engenharia de dados na F1 não apenas revela as inovações da categoria, 
+mas também demonstra como o Big Data pode ser um grande aliado na tomada de decisões estratégicas em cenários de alta performance.
+
 \section{Metodologia do Trabalho}
+
+A revisar com o orientador.
+
 \section{Estrutura do Trabalho}
+
+Este trabalho está organizado em cinco capítulos principais, cada um abordando um aspecto fundamental da pesquisa sobre o uso de Big Data na Fórmula 1, desde a contextualização 
+teórica até a análise dos resultados obtidos.
+
+No \textbf{Capítulo 1 - Introdução}, são apresentados o tema da pesquisa, a contextualização e motivação para o estudo, bem como a formulação do problema de pesquisa. 
+Além disso, são definidos os objetivos geral e específicos, bem como a justificativa para a escolha do tema. Também são descritos a metodologia utilizada e a estrutura do trabalho.
+
+O \textbf{Capítulo 2 - Revisão Bibliográfica} traz um embasamento teórico sobre os conceitos fundamentais de Big Data, engenharia e análise de dados e sua aplicação no contexto da Fórmula 1. 
+São abordados temas como telemetria e coleta de dados em tempo real, além das principais tecnologias utilizadas, incluindo Python, Kafka, Docker e InfluxDB. Este capítulo também inclui 
+uma revisão de trabalhos relacionados e uma discussão sobre análise de dados na F1.
+
+No \textbf{Capítulo 3 - Desenvolvimento}, são detalhados os aspectos técnicos do estudo, incluindo a arquitetura da solução proposta, os métodos de coleta de dados via telemetria e 
+os processos de processamento e armazenamento dessas informações. Além disso, aborda-se a visualização dos dados e a implementação prática da solução, incluindo testes para validação dos resultados.
+
+O \textbf{Capítulo 4 - Análise dos Resultados} apresenta a avaliação da coleta e do processamento de dados, discutindo o desempenho e a eficiência da aplicação proposta. 
+Também são analisadas as limitações do estudo e possíveis melhorias futuras que podem ser implementadas para aprimorar os processos investigados.
+
+Por fim, o \textbf{Capítulo 5 - Conclusão e Trabalhos Futuros} revisita os objetivos propostos no início do trabalho e discute as principais contribuições da pesquisa. 
+São destacados os desafios encontrados ao longo do estudo e sugeridas aplicações futuras para os conceitos e tecnologias exploradas, considerando possíveis avanços na área.
 
 % ---
 % Revisão Bibliográfica
@@ -239,7 +331,7 @@ variabilidade e veracidade. A definição dos 5 Vs é comumente utilizada para d
 \end{itemize}
 
 Através do big data, é possível analisar padrões, tendências e correlações em tempo real, permitindo a tomada de decisões mais assertivas
-e eficientes. É justamente com ela que as equipes de Fórmula 1 conseguem monitorar o desempenho dos carros em tempo real
+e eficientes. É justamente com ela que as equipes de Fórmula 1 conseguem monitorar o desempenho dos carros em tempo real.
 
 Entretanto, exige um poder computacional significativo e ferramentas especializadas para processamento e análise dos dados,
 bem como profissionais capacitados para interpretar os resultados e extrair valor das informações coletadas. Atualmente,
@@ -269,17 +361,87 @@ de acordo com suas necessidades, garantindo o melhor desempenho possível.
 Além disso, não só as equipes podem tirar proveito do big data, como também a própria FIA, que pode, por exemplo, usar dados dos eventos
 para melhorar a segurança dos pilotos, ou até mesmo prever acidentes antes que eles aconteçam. Outra empresa que se beneficia bastante desses
 dados gerados é a Liberty Media, que detém os direitos comerciais da Fórmula 1 e pode usá-los para melhorar a experiência do espectador,
-oferecendo insights e estatísticas em tempo real durante as corridas, entender o que pode ser melhorado nos próximos GPs para quem assiste
+oferecendo insights e estatísticas em tempo real durante as corridas, além de entender o que pode ser melhorado nos próximos GPs para quem assiste
 no autódromo. Não se pode esquecer também dos patrocinadores, que podem usar esses dados para entender melhor o retorno sobre o investimento
 e ajustar suas estratégias de marketing.
 
 \section{Telemetria e Coleta de Dados em Tempo Real}
 O grande desafio de todas as equipes até aqui: como coletar gigabytes de dados de diversos formatos em uma rede privada, compartilhada apenas
 entre as equipes, de forma segura, eficiente e no menor espaço de tempo possível, e mais, sem deixar esse dado ser corrompido ou perdido? 
-A resposta para isso é a telemetria, que é a tecnologia que permite a coleta, transmissão e análise de dados em tempo real.
+O começo de tudo é a telemetria, que é a tecnologia que permite a coleta, transmissão e análise de dados em tempo real.
+
+Todos os sensores do carro monitoram os componentes atrelados a si e, a cada milissegundo ou segundo, enviam esses dados para o paddock através de uma conexão
+com um computador disponibilizado aos engenheiros de equipe. Esses dados são enviados através de uma conexão UDP, que é um protocolo de comunicação rápido e 
+eficiente, ideal para a transmissão de dados em tempo real.
+
+Assim que os dados chegam ao computador, uma pipeline de dados é acionada, que é responsável por processar, armazenar e analisar esses dados. Esse passo é necessário
+pois os dados chegam em um formato de binário, que precisa ser tratado e transformado em informações úteis para os engenheiros - uma dessas
+transformações é justamente converter os dados binários para inteiros e números decimais. 
+
+A pipeline é composta por diversas etapas, como a coleta, transformação e carregamento dos dados. Com os dados já tratados, eles são enviados para um sistema de mensageria,
+que é responsável por transmitir esses dados para o dashboard, que é a interface gráfica que os engenheiros utilizam para analisar o desempenho do carro em tempo real.
+
+Além disso, podemos, também, armazenar esses dados tratados em um banco, seja ele relacional ou não, para futuras análises e consultas. Isso é importante pois,
+com o passar do tempo, podemos identificar padrões e tendências que não seriam possíveis de serem identificados em tempo real. Outra possibilidade seria justamente
+usar esses dados para treinar um modelo de machine learning, que pode prever o desempenho do carro em diferentes cenários, ou até mesmo simular corridas.
+
+Com base na telemetria, os engenheiros conseguem pensar em estratégias, realizar ajustes no carro e testar o desempenho dessas modificações.
+Ele também consegue monitorar o desempenho do piloto, analisando sua concentração, batimentos cardíacos e pressão sanguínea, o que pode
+ajudar outros membros da equipe a fazer melhorias no treino físico do piloto, além de ajustar o carro de acordo com suas necessidades, aumentando
+o conforto para que o piloto possa se concentrar apenas em pilotar.
 
 \section{Tecnologias Utilizadas}
+
+\subsection{Python}
+Python é uma linguagem de programação de alto nível, interpretada, de script, imperativa, orientada a objetos, funcional, de tipagem dinâmica e forte.
+Foi lançada por Guido van Rossum em 1991 com o objetivo de ser uma linguagem de fácil leitura e aprendizado, com uma sintaxe limpa e clara, diferentemente de C, que inspirou sua criação.
+Atualmente, é uma das linguagens mais populares do mundo, com uma comunidade ativa e uma vasta quantidade de bibliotecas, tanto para desenvolvimento web, científico, como para automação de tarefas.
+
+Neste trabalho, iremos utilizá-la para desenvolver a aplicação que se conecta ao jogo, recebe os dados de telemetria, processa esses dados e envia para a mensageria, além do dashboard final que exibirá os dados tratados.
+Sua escolha se deu pela facilidade de uso, vasta quantidade de bibliotecas disponíveis e por ser uma linguagem de alto nível, o que facilita o desenvolvimento e manutenção do código.
+
+\subsection{Kafka}
+Apache Kafka é uma plataforma de mensageria distribuída, que permite a publicação e subscrição de streams de dados em tempo real. Foi criada pela LinkedIn em 2011 e, atualmente, é mantida pela Apache Software Foundation.
+Sua arquitetura é baseada em tópicos, partições e consumidores, o que permite a escalabilidade e tolerância a falhas. Além disso, é altamente eficiente, sendo capaz de lidar com milhões de mensagens por segundo.
+
+Seu uso neste trabalho será extremamente importante visto a quantidade de dados que serão gerados e a necessidade de transmiti-los em tempo real para o dashboard sem perda de informações.
+Nestes casos, o Kafka é a melhor opção, pois garante a entrega das mensagens e a escalabilidade necessária para lidar com a quantidade de dados gerados.
+
+\subsection{Docker}
+Docker é uma plataforma de código aberto que facilita a criação, implantação e execução de aplicativos em contêineres. Contêineres permitem que um desenvolvedor empacote uma aplicação com todas as partes necessárias, como bibliotecas e outras dependências, e a envie como uma única imagem.
+Com essa ferramenta, podemos colocar uma série de serviços em contêineres, como o Kafka, o dashboard e o banco de dados, e executá-los juntos, garantindo que todos os serviços estejam disponíveis e funcionando corretamente, facilitando a execução e o gerenciamento da aplicação,
+além de garantir que a aplicação funcione da mesma forma em diferentes ambientes.
+
+Neste trabalho, sua utilização se dá pela sua leveza, facilidade de uso e interconectividade entre as ferramentas presentes no contêiner, o que facilita a execução e o gerenciamento da aplicação.
+
+\subsection{InfluxDB}
+InfluxDB é um banco de dados de séries temporais de código aberto, otimizado para armazenar e consultar grandes volumes de dados de séries temporais em tempo real. Ele foi criado pela InfluxData em 2013 e, atualmente, é mantido pela mesma.
+Sua arquitetura é baseada em séries temporais, pontos de dados e tags, o que permite a rápida inserção e consulta de dados de séries temporais. Além disso, é altamente escalável, sendo capaz de lidar com milhões de pontos de dados por segundo.
+
+Sua utilização neste trabalho se dá pela necessidade de armazenar os dados tratados para futuras análises, consultas e alimentar modelos de inteligência artificial, 
+além de garantir a integridade e a disponibilidade dos dados gerados. 
+
 \section{Trabalhos Relacionados}
+
+Ver com o Ronaldo depois para entender o que podemos colocar aqui.
+
+\section{Engenharia de Dados}
+A engenharia de dados é uma disciplina que envolve a coleta, processamento, armazenamento e análise de dados para extrair insights e gerar valor para as organizações. Ela abrange uma série de atividades, como a ingestão de dados, limpeza, transformação, modelagem, visualização 
+e interpretação de dados, envolvendo a utilização de técnicas de estatística, matemática avançada, machine learning e visualização de dados. Com ela, é possível automatizar uma série de processos e otimizar o trabalho de analistas
+e cientistas de dados, garantindo a qualidade e a confiabilidade dos dados gerados.
+
+Na Fórmula 1, a engenharia de dados é fundamental para criar pipelines robustas e confiáveis para extrair esses dados dos sensores e guardá-los de forma
+escalável e segura, garantindo que os analistas possam acessá-los em tempo real e tomar decisões estratégicas durante a corrida. Além disso, ela é responsável por
+garantir a integridade e a confiabilidade dos dados gerados, evitando perdas de informações e corrupção de dados.
+
+\section{Análise de Dados}
+
+A análise de dados é uma etapa fundamental para a extração de insights e tomada de decisões estratégicas. Ela envolve a coleta, processamento, modelagem e interpretação de dados para identificar padrões, tendências e correlações relevantes,
+envolvendo massivamente a utilização de técnicas de estatística, matemática avançada, machine learning e visualização de dados.
+Na Fórmula 1, a análise de dados é utilizada para monitorar o desempenho dos carros, simular cenários de corrida, prever resultados e otimizar estratégias de corrida.
+
+Ao longo deste trabalho, iremos discutir sobre a sua importância ao final do fluxo dos dados, afinal, de nada adianta coletar, processar e armazenar os dados se não conseguirmos extrair valor deles. Para isso, utilizaremos técnicas de visualização de dados, como
+análise exploratória, gráficos e dashboards, para facilitar a interpretação dos dados e a tomada de decisões.
 
 % ---
 % Desenvolvimento
