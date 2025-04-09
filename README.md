@@ -40,22 +40,22 @@
 
 ### **Prática**  
 - **Semana 5:**  
-    - [ ] Implementar coleta contínua de pacotes UDP.  
-    - [ ] Armazenar os dados de forma estruturada (banco de dados ou arquivos).  
+    - [x] Implementar coleta contínua de pacotes UDP.  
+    - [x] Armazenar os dados de forma estruturada (banco de dados ou arquivos).  
 - **Semana 6:**  
     - [ ] Criar um sistema para validar os dados coletados e remover inconsistências.  
-    - [ ] Implementar logs para monitoramento da coleta.  
+    - [x] Implementar logs para monitoramento da coleta.  
 - **Semana 7:**  
     - [ ] Desenvolver um endpoint básico para disponibilizar os dados coletados.  
     - [ ] Iniciar estruturação do dashboard (definir layout e métricas principais).  
 - **Semana 8:**  
-    - [ ] Realizar testes de coleta com diferentes sessões de corrida.  
+    - [x] Realizar testes de coleta com diferentes sessões de corrida.  
     - [ ] Ajustar modelo de dados conforme necessidade.  
 
 ### **Escrita**  
 - **Semana 5:**  
-    - [ ] Redação sobre as ferramentas utilizadas no desenvolvimento.  
-    - [ ] Descrição do protocolo de telemetria e como ele é utilizado.  
+    - [x] Redação sobre as ferramentas utilizadas no desenvolvimento.  
+    - [x] Descrição do protocolo de telemetria e como ele é utilizado.  
 - **Semana 6:**  
     - [ ] Escrita sobre desafios técnicos da implementação inicial.  
     - [ ] Documentação do processo de armazenamento dos dados.  

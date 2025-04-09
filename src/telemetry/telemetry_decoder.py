@@ -1,6 +1,6 @@
 import struct
 
-class TelemetryParser:
+class TelemetryDecoder:
     @staticmethod
     def decode_header(data):
         """Decodifica os cabeçalhos do pacote."""

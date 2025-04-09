@@ -1,9 +1,24 @@
+# main.py
 from telemetry.udp_listener import UDPListener
+from telemetry.packet_handler import PacketHandler
+from telemetry.telemetry_processor import TelemetryProcessor
+from handlers.data.influxdb_handler import InfluxDBHandler
 
-udp = UDPListener()
+influx_writer = InfluxDBHandler(
+    host="influxdb",
+    port=8086,
+    org="f1-org",
+    bucket="f1-bucket",
+    token="meu-token-secreto"
+)
 
-def main():
-    udp.startup_listener()
+processor = TelemetryProcessor(writer=influx_writer)
+handler = PacketHandler()
+listener = UDPListener(
+    ip="0.0.0.0",
+    port=20777,
+    packet_handler=handler,
+    processor=processor
+)
 
-if __name__ == '__main__':
-    main()
+listener.startup_listener()

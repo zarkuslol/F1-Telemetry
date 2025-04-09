@@ -6,12 +6,17 @@ services:
     container_name: f1-telemetry
     depends_on:
       - kafka
+      - influxdb
     networks:
       - telemetry_network
     ports:
-      - "20777:20777/udp" # Porta UDP para receber os dados do jogo
+      - "20777:20777/udp"  # Porta UDP para receber os dados do jogo
     environment:
       KAFKA_BROKER: "kafka:9092"
+      INFLUXDB_URL: "http://influxdb:8086"
+      INFLUXDB_TOKEN: "meu-token-secreto"
+      INFLUXDB_ORG: "f1-org"
+      INFLUXDB_BUCKET: "f1-bucket"
     restart: unless-stopped
 
   zookeeper:
@@ -40,6 +45,27 @@ services:
       - telemetry_network
     restart: unless-stopped
 
+  influxdb:
+    image: influxdb:2.7
+    container_name: influxdb
+    ports:
+      - "8086:8086"
+    volumes:
+      - influxdb_data:/var/lib/influxdb2
+    environment:
+      DOCKER_INFLUXDB_INIT_MODE: setup
+      DOCKER_INFLUXDB_INIT_USERNAME: admin
+      DOCKER_INFLUXDB_INIT_PASSWORD: admin123
+      DOCKER_INFLUXDB_INIT_ORG: f1-org
+      DOCKER_INFLUXDB_INIT_BUCKET: f1-bucket
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: meu-token-secreto
+    networks:
+      - telemetry_network
+    restart: unless-stopped
+
 networks:
   telemetry_network:
     driver: bridge
+
+volumes:
+  influxdb_data:
