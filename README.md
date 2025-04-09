@@ -11,27 +11,27 @@
     - [x] Fazer testes iniciais de conexão via UDP para verificar recebimento de pacotes.  
 - **Semana 2:**  
     - [x] Identificar quais dados da telemetria serão coletados e armazenados.  
-    - [ ] Estruturar um modelo inicial para armazenar os dados coletados (JSON, banco de dados, etc.).  
+    - [x] Estruturar um modelo inicial para armazenar os dados coletados (JSON, banco de dados, etc.).  
 - **Semana 3:**  
     - [x] Desenvolver um script básico para coletar pacotes UDP e salvar os dados.  
     - [x] Validar a integridade dos dados recebidos e ajustar caso necessário.  
 - **Semana 4:**  
     - [x] Planejar a arquitetura da aplicação (pipeline de dados e dashboard).  
-    - [ ] Revisar tecnologias e bibliotecas para visualização de dados.  
+    - [x] Revisar tecnologias e bibliotecas para visualização de dados.  
 
 ### **Escrita**  
 - **Semana 1:**  
     - [x] Definir objetivos do TCC e levantamento de referências bibliográficas.  
     - [x] Estruturar um esqueleto do trabalho (sumário e tópicos principais).  
 - **Semana 2:**  
-    - [ ] Escrever a introdução e contextualização sobre Big Data na F1.  
-    - [ ] Levantar cases reais sobre uso de dados na categoria.  
+    - [x] Escrever a introdução e contextualização sobre Big Data na F1.  
+    - [x] Levantar cases reais sobre uso de dados na categoria.  
 - **Semana 3:**  
     - [x] Redigir seção sobre fundamentos de Big Data e seu impacto na F1.  
-    - [ ] Estudo sobre protocolos de transmissão de dados em tempo real.  
+    - [x] Estudo sobre protocolos de transmissão de dados em tempo real.  
 - **Semana 4:**  
-    - [ ] Explicar a metodologia usada no desenvolvimento da aplicação.  
-    - [ ] Descrever os desafios do projeto e hipóteses iniciais.  
+    - [x] Explicar a metodologia usada no desenvolvimento da aplicação.  
+    - [x] Descrever os desafios do projeto e hipóteses iniciais.  
 
 ---
 
