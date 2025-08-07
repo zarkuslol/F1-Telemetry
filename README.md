@@ -1,118 +1,81 @@
-# Big Data na F1 (Telemetria)
+![Image](./docs/F1%20Pipeline-2.png "Pipeline architecture")
 
----
+# F1 Telemetry: From Fast Laps to Fast Decisions
 
-## **Março – Planejamento e Estruturação**
-*Foco em pesquisa, entendimento do problema e primeiros testes de conexão com a telemetria.*
+## About The Project
+This project is a comprehensive data engineering pipeline designed to capture, process, and visualize real-time telemetry data from the F1 23 game. It was developed as a final project for a graduation course and serves as a practical demonstration of building a robust, scalable, and fault-tolerant data pipeline using modern, open-source technologies. The system simulates the high-pressure environment of Formula 1, where real-time data analysis is crucial for making strategic decisions that can change the outcome of a race.
 
-### **Prática**  
-- **Semana 1:**  
-    - [x] Revisar documentação sobre o protocolo de telemetria do F1 22.  
-    - [x] Fazer testes iniciais de conexão via UDP para verificar recebimento de pacotes.  
-- **Semana 2:**  
-    - [x] Identificar quais dados da telemetria serão coletados e armazenados.  
-    - [x] Estruturar um modelo inicial para armazenar os dados coletados (JSON, banco de dados, etc.).  
-- **Semana 3:**  
-    - [x] Desenvolver um script básico para coletar pacotes UDP e salvar os dados.  
-    - [x] Validar a integridade dos dados recebidos e ajustar caso necessário.  
-- **Semana 4:**  
-    - [x] Planejar a arquitetura da aplicação (pipeline de dados e dashboard).  
-    - [x] Revisar tecnologias e bibliotecas para visualização de dados.  
+## Core Concepts
 
-### **Escrita**  
-- **Semana 1:**  
-    - [x] Definir objetivos do TCC e levantamento de referências bibliográficas.  
-    - [x] Estruturar um esqueleto do trabalho (sumário e tópicos principais).  
-- **Semana 2:**  
-    - [x] Escrever a introdução e contextualização sobre Big Data na F1.  
-    - [x] Levantar cases reais sobre uso de dados na categoria.  
-- **Semana 3:**  
-    - [x] Redigir seção sobre fundamentos de Big Data e seu impacto na F1.  
-    - [x] Estudo sobre protocolos de transmissão de dados em tempo real.  
-- **Semana 4:**  
-    - [x] Explicar a metodologia usada no desenvolvimento da aplicação.  
-    - [x] Descrever os desafios do projeto e hipóteses iniciais.  
+- **Real-Time Data Ingestion**: The pipeline starts by capturing telemetry data broadcasted by the F1 23 game over a UDP network. A high-performance Go application listens for these packets, decodes them, and initiates the data flow.
 
----
+- **Scalable Data Streaming**: At the heart of the architecture is Apache Kafka, a distributed streaming platform that decouples data producers from consumers. This ensures that the data pipeline is resilient and can handle high-velocity data streams without loss.
 
-## **Abril – Desenvolvimento inicial**  
-*Começo da implementação da pipeline e escrita sobre tecnologias utilizadas.*  
+- **Dual Data Processing Paths**: The architecture implements two distinct data processing paths:
 
-### **Prática**  
-- **Semana 5:**  
-    - [x] Implementar coleta contínua de pacotes UDP.  
-    - [x] Armazenar os dados de forma estruturada (banco de dados ou arquivos).  
-- **Semana 6:**  
-    - [ ] Criar um sistema para validar os dados coletados e remover inconsistências.  
-    - [x] Implementar logs para monitoramento da coleta.  
-- **Semana 7:**  
-    - [ ] Desenvolver um endpoint básico para disponibilizar os dados coletados.  
-    - [ ] Iniciar estruturação do dashboard (definir layout e métricas principais).  
-- **Semana 8:**  
-    - [x] Realizar testes de coleta com diferentes sessões de corrida.  
-    - [ ] Ajustar modelo de dados conforme necessidade.  
+    - **Hot Path (Real-Time Dashboard)**: A Go-based Kafka consumer processes telemetry data as it arrives, feeding it into InfluxDB, a time-series database optimized for high-write and query loads. This path powers a real-time dashboard that visualizes key performance indicators.
 
-### **Escrita**  
-- **Semana 5:**  
-    - [x] Redação sobre as ferramentas utilizadas no desenvolvimento.  
-    - [x] Descrição do protocolo de telemetria e como ele é utilizado.  
-- **Semana 6:**  
-    - [ ] Escrita sobre desafios técnicos da implementação inicial.  
-    - [ ] Documentação do processo de armazenamento dos dados.  
-- **Semana 7:**  
-    - [ ] Explicação sobre a estruturação do dashboard e suas métricas.  
-    - [ ] Análise de ferramentas utilizadas para visualização de dados.  
-- **Semana 8:**  
-    - [ ] Comparação entre diferentes abordagens para coleta e análise de dados.  
-    - [ ] Revisão e ajustes no texto já produzido.  
+   - **Cold Path (Post-Race Analysis)**: A Python-based Kafka consumer saves the raw telemetry data to a MinIO data lake. After the "race" is over, a separate ETL (Extract, Transform, Load) job processes this data and loads it into a PostgreSQL data warehouse for in-depth, post-event analysis.
 
----
+- **Containerization**: The entire application is containerized using Docker and managed with Docker Compose, allowing for easy setup, deployment, and scaling.
 
-## **Maio – Desenvolvimento intermediário**  
-*Aprimoramento da pipeline e implementação das primeiras visualizações no dashboard.*  
+## Getting Started
+To get this project up and running, follow these simple steps.
 
-### **Prática**  
-- **Semana 9:**  
-    - [ ] Implementar tratamento dos dados (ex.: filtragem, normalização).  
-    - [ ] Criar um primeiro modelo de análise básica dos dados recebidos.  
-- **Semana 10:**  
-    - [ ] Construção das primeiras visualizações de telemetria (ex.: velocidade por setor).  
-    - [ ] Testes da integração do dashboard com os dados coletados.  
-- **Semana 11:**  
-    - [ ] Melhorar a performance da pipeline para reduzir latência.  
-    - [ ] Implementar estrutura para comparar voltas de diferentes pilotos.  
-- **Semana 12:**  
-    - [ ] Revisar e otimizar toda a estrutura para garantir consistência.  
-    - [ ] Planejar novas funcionalidades para análise de desempenho.  
+### Prerequisites
 
-### **Escrita**  
-- **Semana 9:**  
-    - [ ] Redação sobre a modelagem dos dados e estrutura do banco.  
-    - [ ] Descrição sobre os métodos de análise de telemetria.  
-- **Semana 10:**  
-    - [ ] Explicação sobre como os dados coletados são processados.  
-    - [ ] Comparação entre diferentes técnicas de análise na F1.  
-- **Semana 11:**  
-    - [ ] Escrita sobre a evolução da aplicação e principais aprendizados.  
-    - [ ] Início da parte sobre resultados obtidos até o momento.  
-- **Semana 12:**  
-    - [ ] Revisão geral e ajustes conforme feedback do orientador.  
+- Docker
 
----
+- Docker Compose
 
-## **Julho a Setembro – Finalização e defesa**  
-*Refinamento final da aplicação e entrega do TCC.*  
+### Installation
 
-### **Julho**  
-- **Revisar texto final e validar funcionamento da aplicação.**  
-- **Testar e rodar simulações reais para coletar dados e gerar insights.**  
-- **Ajustar últimos detalhes no dashboard e documentação.**  
+1. Clone the repo:
 
-### **Agosto**  
-- **Revisão final do texto e formatação.**  
-- **Apresentação da aplicação para orientador e possíveis ajustes.**  
-- **Preparação da apresentação e defesa.**  
+```bash
+git clone https://github.com/zarkuslol/f1-telemetry.git
+```
 
-### **Setembro**  
-- **Entrega do TCC.**  
-- **Defesa final.** 🚀
+2. Navigate to the project directory:
+
+```bash
+cd f1-telemetry/F1-Telemetry-main
+```
+
+### Running the Application
+
+1. **Start all services**:
+
+This command will build the Docker images and start all the services defined in the ```docker-compose.yml``` file, including the data collector, Kafka, InfluxDB, PostgreSQL, MinIO, and the real-time consumers.
+
+```bash
+docker-compose up --build
+```
+
+2. **Run the post-race ETL process**:
+
+After you have finished your "race" and data has been collected in the MinIO data lake, run the following command to trigger the ETL job. This will process the data from MinIO and load it into the PostgreSQL data warehouse for further analysis.
+
+```bash
+docker-compose run --rm etl-job
+```
+
+## Project Structure
+- ```docker-compose.yml```: Defines and configures all the services of the application.
+
+- ```src/```: Contains the source code for the Go and Python applications.
+
+    - ```main.go```: The main entry point for the Go data collector.
+
+    - ```messaging/```: Includes the Kafka producers and consumers.
+
+    - ```telemetry/```:  Contains the logic for decoding and processing the F1 23 telemetry packets.
+
+    - ```scripts/```: Holds the Python script for the post-race ETL job.
+
+- ```dockerfiles/```: Contains the Dockerfiles for building the application's services.
+
+- ```template/```: Includes a LaTeX template and a PDF of the final project report ("TCC").
+
+# License
+This project is licensed under the MIT License - see the LICENSE file for details.
