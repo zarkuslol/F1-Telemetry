@@ -25,3 +25,6 @@ src/telemetry/__pycache__
 
 # MinIO Data
 minio_data/
+
+# Compiled program
+src/src
