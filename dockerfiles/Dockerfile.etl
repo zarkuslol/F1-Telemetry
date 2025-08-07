@@ -1,0 +1,8 @@
+FROM python:3.10-slim
+
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
+COPY src/scripts/save_data_to_dw.py ./etl_minio_to_pg.py
+CMD ["python", "etl_minio_to_pg.py"]

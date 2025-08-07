@@ -4,11 +4,12 @@ services:
   f1-telemetry:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: dockerfiles/Dockerfile.collector
     container_name: f1-telemetry
     depends_on:
       - kafka
       - influxdb
+      - postgres # Adicionada dependência do postgres
     networks:
       - telemetry_network
     ports:
@@ -19,6 +20,11 @@ services:
       INFLUXDB_TOKEN: "meu-token-secreto"
       INFLUXDB_ORG: "f1-org"
       INFLUXDB_BUCKET: "f1-bucket"
+      # Adicione as variáveis de ambiente do PostgreSQL se o f1-telemetry precisar se conectar
+      POSTGRES_HOST: "postgres"
+      POSTGRES_DB: "f1db"
+      POSTGRES_USER: "f1user"
+      POSTGRES_PASSWORD: "f1password"
     restart: unless-stopped
 
   zookeeper:
@@ -80,6 +86,73 @@ services:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=grafana
 
+  postgres:
+    image: postgres:15-alpine
+    container_name: postgres
+    environment:
+      POSTGRES_DB: "f1db"
+      POSTGRES_USER: "f1user"
+      POSTGRES_PASSWORD: "f1password"
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - telemetry_network
+    restart: unless-stopped
+
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_data:/data
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadminpassword
+    command: server /data --console-address ":9001"
+    networks:
+      - telemetry_network
+    restart: unless-stopped
+
+  minio-consumer:
+    build:
+      context: .
+      dockerfile: dockerfiles/Dockerfile.minio
+    container_name: minio-consumer
+    depends_on:
+      - kafka
+      - minio
+    networks:
+      - telemetry_network
+    environment:
+      KAFKA_BROKER: "kafka:9092"
+      MINIO_ENDPOINT: "minio:9000"
+      MINIO_ACCESS_KEY: "minioadmin"
+      MINIO_SECRET_KEY: "minioadminpassword"
+    restart: on-failure
+
+  etl-job:
+    build:
+      context: .
+      dockerfile: dockerfiles/Dockerfile.etl
+    depends_on:
+      - minio
+      - postgres
+    networks:
+      - telemetry_network
+    environment:
+      MINIO_ENDPOINT: "minio:9000"
+      MINIO_ACCESS_KEY: "minioadmin"
+      MINIO_SECRET_KEY: "minioadminpassword"
+      PG_HOST: "postgres"
+      PG_DB: "f1db"
+      PG_USER: "f1user"
+      PG_PASSWORD: "f1password"
+
+
 networks:
   telemetry_network:
     driver: bridge
@@ -87,3 +160,5 @@ networks:
 volumes:
   influxdb_data:
   grafana-data:
+  minio_data:
+  postgres_data:
