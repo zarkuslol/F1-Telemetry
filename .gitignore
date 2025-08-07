@@ -17,9 +17,11 @@ template/template.ind
 
 # Environment
 .env
-
 venv
 .venv
 
 # __pycache__
 src/telemetry/__pycache__
+
+# MinIO Data
+minio_data/

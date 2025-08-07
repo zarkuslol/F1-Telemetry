@@ -1,5 +1,8 @@
+argon2-cffi==25.1.0
+argon2-cffi-bindings==25.1.0
 blinker==1.9.0
 certifi==2025.7.14
+cffi==1.17.1
 charset-normalizer==3.4.2
 click==8.2.1
 dash==3.1.1
@@ -10,10 +13,15 @@ itsdangerous==2.2.0
 Jinja2==3.1.6
 kafka-python==2.2.15
 MarkupSafe==3.0.2
+minio==7.2.16
 narwhals==1.48.0
 nest-asyncio==1.6.0
 packaging==25.0
 plotly==6.2.0
+psycopg2-binary==2.9.10
+pycparser==2.22
+pycryptodome==3.23.0
+python-dotenv==1.1.1
 requests==2.32.4
 retrying==1.4.1
 setuptools==80.9.0
